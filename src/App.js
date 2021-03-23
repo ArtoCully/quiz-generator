@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { fetchQuizes } from './services/opentdb';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  useEffect(() => {
+    const quizes = fetchQuizes({ amount: 10 });
+    console.log('quizes', quizes);
+  });
+
   return (
     <div className="App">
       <header className="App-header">
