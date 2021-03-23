@@ -1,31 +1,36 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { fetchQuizes } from './services/opentdb';
+import OpenTdbQuiz from './components/quiz/opentdbquiz';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
 
-  useEffect(() => {
-    const quizes = fetchQuizes({ amount: 10 });
-    console.log('quizes', quizes);
-  });
+  const [quizList, setQuizList] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    fetchQuizes({ amount: 10 })
+      .then((response) => {
+        if (response.status === 200 && response.data.results) {
+          setLoading(false);
+          setQuizList(response.data.results);
+          console.log('quizList', quizList);
+        }
+      });
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <section>
+        {isLoading
+            ? 'Loading ...'
+            : quizList.length && quizList.map((quiz, key) => <OpenTdbQuiz key={key} {...quiz} /> )
+          }
+      </section>
     </div>
   );
 }
