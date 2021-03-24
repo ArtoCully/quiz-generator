@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, GridItem, Spinner } from "@chakra-ui/react"
 import { fetchQuizes } from './services/opentdb';
 import OpenTdbQuiz from './components/quiz/OpenTdbQuiz';
+import BottomNav from './components/bottomNav/BottomNav';
 import logo from './logo.svg';
 import './App.css';
 
@@ -39,6 +40,11 @@ function App() {
             : quizList.length && quizList.map((quiz, key) => <GridItem marginBottom="1.2rem"><OpenTdbQuiz key={key} {...quiz} /></GridItem> )
           }
       </Grid>
+      <BottomNav
+        setQuizList={setQuizList}
+        setLoading={setLoading}
+        isLoading={isLoading}
+      />
     </div>
   );
 }
