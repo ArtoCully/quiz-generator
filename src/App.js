@@ -1,6 +1,6 @@
 import React from 'react';
 import { fetchQuizes } from './services/opentdb';
-import OpenTdbQuiz from './components/quiz/opentdbquiz';
+import OpenTdbQuiz from './components/quiz/OpenTdbQuiz';
 import logo from './logo.svg';
 import './App.css';
 
