@@ -27,7 +27,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <Grid templateColumns="repeat(1, 1fr)" gap={15} padding="2rem">
+      <Grid templateColumns="repeat(1, 1fr)" gap={15} padding="2rem" paddingBottom="10rem">
         {isLoading
             ? <GridItem>
               <Spinner
