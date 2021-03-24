@@ -1,3 +1,6 @@
 .OpenTdbQuiz--answer {
   display: block;
+  background: orange;
+  padding: 0.4rem;
+  margin: 1.2rem auto;
 }

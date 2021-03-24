@@ -1,4 +1,14 @@
 import * as React from 'react';
+import {
+  Flex,
+  Box,
+  Button,
+  Radio,
+  RadioGroup,
+  Checkbox,
+  CheckboxGroup,
+  Heading,
+} from "@chakra-ui/react"
 import './OpenTdbQuiz.css';
 // category: "Entertainment: Video Games"
 // correct_answer: "True"
@@ -11,19 +21,26 @@ import './OpenTdbQuiz.css';
 export const OpenTdbBooleanItem = (item) => {
   const answers = [...item.incorrect_answers, item.correct_answer];
   const noSpaceCategory = item.category.replace(/\s/g, '');
+  const [value, setValue] = React.useState('');
 
   return (
     <article>
-      <h3 contentEditable='true' dangerouslySetInnerHTML={{ __html: item.question }}></h3>
-      {answers.map((answer, key) => {
-        const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}[]`;
-        return (
-          <div key={key}>
-            <input type="radio" name={nameKey} value={answer} />
-            <label htmlFor={nameKey}>{answer}</label>
-          </div>
-        );
-      })}
+      <Heading
+        as="h3"
+        size="md"
+        marginBottom="1.1rem"
+      >
+        <span dangerouslySetInnerHTML={{ __html: item.question }} />
+      </Heading>
+      <Flex align="center" justify="center">
+        <RadioGroup onChange={setValue} value={value}>
+          {answers.map((answer, key) => {
+            const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}[]`;
+
+            return <Radio name={nameKey} value={answer}>{answer}</Radio>
+          })}
+        </RadioGroup>
+      </Flex>
     </article>
   )
 };
@@ -34,17 +51,27 @@ export const OpenTdbMultipleChoiceItem = (item) => {
 
   return (
     <article>
-      <h3 contentEditable='true' dangerouslySetInnerHTML={{ __html: item.question }}></h3>
-      {answers.map((answer, key) => {
-        const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}`;
+      <Heading
+        as="h3"
+        size="md"
+        marginBottom="1.1rem"
+      >
+        <span dangerouslySetInnerHTML={{ __html: item.question }} />
+      </Heading>
+      <Flex align="center" justify="center">
+        <CheckboxGroup>
+          {answers.map((answer, key) => {
+            const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}`;
 
-        return (
-          <div key={key}>
-            <input type="checkbox" name={nameKey} value={answer} />
-            <label htmlFor={nameKey}>{answer}</label>
-          </div>
-        );
-      })}
+            return <Checkbox
+              type="checkbox"
+              name={nameKey}
+              value={answer}
+              padding="0.375rem"
+            >{answer}</Checkbox>
+          })}
+        </CheckboxGroup>
+      </Flex>
     </article>
   )
 };
@@ -79,18 +106,22 @@ const OpenTdbQuiz = (quiz) => {
   }
 
   return (
-    <div>
+    <Box maxW="80vw" margin="0 auto">
       <OpenDbItem {...quiz} />
-      <button
+      <Button
+        colorScheme="pink"
+        variant="outline"
+        size="sm"
         className="OpenTdbQuiz--reveal-answer"
         onClick={handleOnClickToggleAnswer}
+        marginTop="1rem"
       >
         {showAnswer ? 'Hide' : 'Reveal'} Answer
-      </button>
+      </Button>
       <small className="OpenTdbQuiz--answer" hidden>
         {quiz.correct_answer}
       </small>
-    </div>
+    </Box>
   )
 }
 

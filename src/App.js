@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid, GridItem, Spinner } from "@chakra-ui/react"
 import { fetchQuizes } from './services/opentdb';
 import OpenTdbQuiz from './components/quiz/OpenTdbQuiz';
 import logo from './logo.svg';
@@ -25,12 +26,19 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <section>
+      <Grid templateColumns="repeat(1, 1fr)" gap={15} padding="2rem">
         {isLoading
-            ? 'Loading ...'
-            : quizList.length && quizList.map((quiz, key) => <OpenTdbQuiz key={key} {...quiz} /> )
+            ? <GridItem>
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="pink"
+                size="xl"/>
+              </GridItem>
+            : quizList.length && quizList.map((quiz, key) => <GridItem marginBottom="1.2rem"><OpenTdbQuiz key={key} {...quiz} /></GridItem> )
           }
-      </section>
+      </Grid>
     </div>
   );
 }
