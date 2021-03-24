@@ -37,7 +37,15 @@ export const OpenTdbBooleanItem = (item) => {
           {answers.map((answer, key) => {
             const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}[]`;
 
-            return <Radio name={nameKey} value={answer}><span dangerouslySetInnerHTML={{ __html: answer }} /></Radio>
+            return (
+              <Radio
+                name={nameKey}
+                value={answer}
+                padding="0.375rem"
+              >
+                <span dangerouslySetInnerHTML={{ __html: answer }} />
+              </Radio>
+            );
           })}
         </RadioGroup>
       </Flex>
