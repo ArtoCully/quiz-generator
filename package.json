@@ -44,8 +44,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sequelize": "./node_modules/.bin/sequelize"
+    "sequelize": "./node_modules/.bin/sequelize",
+    "start:server": "node server/index.js"
   },
+  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": [
       "react-app",
