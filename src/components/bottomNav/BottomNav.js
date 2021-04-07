@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Box, Flex, BeatLoader } from '@chakra-ui/react';
+import { Button, Box, Flex } from '@chakra-ui/react';
 import { fetchQuizes } from '../../services/opentdb';
 import './BottomNav.css';
 
