@@ -22,7 +22,7 @@ function App() {
             <Route exact path="/">
               <HomeView />
             </Route>
-            <Route path="/quiz/random">
+            <Route path="/quiz">
               <QuizView />
             </Route>
             <Route path="/quiz/specify">

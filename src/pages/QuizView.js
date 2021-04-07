@@ -9,7 +9,10 @@ function QuizView() {
   const [isLoading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    fetchQuizes({ amount: 10 })
+    // ?amount=10&category=9&difficulty=easy&type=multiple&encode=base64
+    let query = window.location.search || '?amount=10';
+    console.log('query', query);
+    fetchQuizes(query)
       .then((response) => {
         if (response.status === 200 && response.data.results) {
           setLoading(false);
@@ -22,17 +25,25 @@ function QuizView() {
   return (
     <>
       <Grid templateColumns="repeat(1, 1fr)" gap={15} padding="2rem" paddingBottom="10rem">
-        {isLoading
-            ? <GridItem>
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="pink"
-                size="xl"/>
-              </GridItem>
-            : quizList.length && quizList.map((quiz, key) => <GridItem marginBottom="1.2rem"><OpenTdbQuiz key={key} {...quiz} /></GridItem> )
-          }
+        <GridItem marginBottom="1.2rem">
+            {(() => {
+              if (isLoading) {
+                return <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="pink"
+                  size="xl"/>
+              }
+              if (quizList.length) {
+                return quizList.map((quiz, index) => {
+                  const key = quiz.question.trim() + index
+                  return <OpenTdbQuiz key={key} {...quiz} />
+                })
+              }
+              return null;
+            })()}
+          </GridItem>
       </Grid>
       <BottomNav
         setQuizList={setQuizList}

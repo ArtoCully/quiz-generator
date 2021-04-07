@@ -15,7 +15,7 @@ function Home() {
             border="2px"
             borderColor="pink.500"
           >
-            <Link to="/quiz/random">Generate Random Quiz</Link>
+            <Link to="/quiz?amount=15">Generate Random Quiz</Link>
         </Button>
       </GridItem>
       <GridItem>

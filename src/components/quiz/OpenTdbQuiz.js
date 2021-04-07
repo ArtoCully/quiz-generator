@@ -22,6 +22,7 @@ export const OpenTdbBooleanItem = (item) => {
   const answers = [...item.incorrect_answers, item.correct_answer];
   const noSpaceCategory = item.category.replace(/\s/g, '');
   const [value, setValue] = React.useState('');
+  const key = item.question.trim();
 
   return (
     <article>
@@ -34,8 +35,8 @@ export const OpenTdbBooleanItem = (item) => {
       </Heading>
       <Flex align="center" justify="center">
         <RadioGroup onChange={setValue} value={value}>
-          {answers.map((answer, key) => {
-            const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}[]`;
+          {answers.map((answer, index) => {
+            const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}-${key}-${index}-[]`;
 
             return (
               <Radio
@@ -56,6 +57,7 @@ export const OpenTdbBooleanItem = (item) => {
 export const OpenTdbMultipleChoiceItem = (item) => {
   const answers = [...item.incorrect_answers, item.correct_answer];
   const noSpaceCategory = item.category.replace(/\s/g, '');
+  const key = item.question.trim();
 
   return (
     <article>
@@ -68,8 +70,8 @@ export const OpenTdbMultipleChoiceItem = (item) => {
       </Heading>
       <Flex align="center" justify="center">
         <CheckboxGroup>
-          {answers.map((answer, key) => {
-            const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}`;
+          {answers.map((answer, index) => {
+            const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}-${key}-${index}`;
 
             return <Checkbox
               type="checkbox"
