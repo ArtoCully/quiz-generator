@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import HomeView from './pages/HomeView';
 import QuizView from './pages/QuizView';
+import QuizSpecifyView from './pages/QuizSpecifyView';
 import logo from './logo.svg';
 import './App.css';
 
@@ -25,8 +26,8 @@ function App() {
             <Route path="/quiz">
               <QuizView />
             </Route>
-            <Route path="/quiz/specify">
-              TBD
+            <Route path="/form/quiz">
+              <QuizSpecifyView />
             </Route>
           </Switch>
       </div>
