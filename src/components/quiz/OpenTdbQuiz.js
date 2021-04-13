@@ -31,6 +31,7 @@ export const OpenTdbBooleanItem = (item) => {
         as="h3"
         size="md"
         marginBottom="1.1rem"
+        lineHeight="1.6"
       >
         <span dangerouslySetInnerHTML={{ __html: item.question }} />
       </Heading>
@@ -68,6 +69,7 @@ export const OpenTdbMultipleChoiceItem = (item) => {
         as="h3"
         size="md"
         marginBottom="1.1rem"
+        lineHeight="1.6"
       >
         <span dangerouslySetInnerHTML={{ __html: item.question }} />
       </Heading>
@@ -121,7 +123,7 @@ const OpenTdbQuiz = (quiz) => {
   }
 
   return (
-    <Box maxW="80vw" margin="0 auto">
+    <Box maxW="80vw" margin="1rem auto 2rem">
       <OpenDbItem {...quiz} />
       <Button
         colorScheme="pink"
