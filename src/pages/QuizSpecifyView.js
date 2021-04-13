@@ -5,7 +5,8 @@ import {
   FormLabel,
   Select,
   Input,
-  Button
+  Button,
+  Box
 } from "@chakra-ui/react";
 
 const searchParams = new URLSearchParams();
@@ -24,12 +25,12 @@ function QuizSpecifyView() {
   };
 
   return (
-    <form>
-      <FormControl id="numberOfQuestions">
+    <Box as="form" padding="2rem">
+      <FormControl marginBottom="1.5rem" id="numberOfQuestions">
         <FormLabel>Select Number Of Questions</FormLabel>
         <Input type="number" name="trivia_amount" id="trivia_amount" min="1" max="50" defaultValue="10" onChange={handleOnFormChange} />
       </FormControl>
-      <FormControl id="category">
+      <FormControl marginBottom="1.5rem" id="category">
         <FormLabel>Select Category</FormLabel>
         <Select name="trivia_category" onChange={handleOnFormChange}>
           <option value="any">Any Category</option>
@@ -59,7 +60,7 @@ function QuizSpecifyView() {
           <option value="32">Entertainment: Cartoon &amp; Animations</option>
         </Select>
       </FormControl>
-      <FormControl id="difficulty">
+      <FormControl marginBottom="1.5rem" id="difficulty">
         <FormLabel>Select Difficulty</FormLabel>
         <Select name="trivia_difficulty" onChange={handleOnFormChange}>
           <option value="any">Any Difficulty</option>
@@ -68,7 +69,7 @@ function QuizSpecifyView() {
           <option value="hard">Hard</option>
         </Select>
       </FormControl>
-      <FormControl id="type">
+      <FormControl marginBottom="1.5rem" id="type">
         <FormLabel>Select Type</FormLabel>
         <Select name="trivia_type" onChange={handleOnFormChange}>
           <option value="any">Any Type</option>
@@ -76,7 +77,7 @@ function QuizSpecifyView() {
           <option value="boolean">True / False</option>
         </Select>
       </FormControl>
-      <FormControl id="trivia_submit">
+      <FormControl marginBottom="1.5rem" id="trivia_submit">
         <Link
           to={`/quiz?${formState}`}
         >
@@ -93,7 +94,7 @@ function QuizSpecifyView() {
           </Button>
         </Link>
       </FormControl>
-    </form>
+    </Box>
   )
 }
 
