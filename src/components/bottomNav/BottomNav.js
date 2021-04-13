@@ -6,7 +6,8 @@ import './BottomNav.css';
 const BottomNav = (params) => {
   const handleOnClick = () => {
     params.setLoading(true);
-    fetchQuizes({ amount: 10 })
+    const query = window.location.search || '?amount=10';
+    fetchQuizes(query)
       .then((response) => {
         if (response.status === 200 && response.data.results) {
           params.setLoading(false);
