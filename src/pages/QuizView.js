@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { Grid, GridItem, Spinner } from "@chakra-ui/react"
 import { fetchQuizes } from '../services/opentdb';
 import OpenTdbQuiz from '../components/quiz/OpenTdbQuiz';
@@ -37,7 +38,7 @@ function QuizView() {
               }
               if (quizList.length) {
                 return quizList.map((quiz, index) => {
-                  const key = quiz.question.trim() + index
+                  const key = uuidv4();
                   return <OpenTdbQuiz key={key} {...quiz} />
                 })
               }

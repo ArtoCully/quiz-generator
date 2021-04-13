@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import {
   Flex,
   Box,
@@ -37,9 +38,11 @@ export const OpenTdbBooleanItem = (item) => {
         <RadioGroup onChange={setValue} value={value}>
           {answers.map((answer, index) => {
             const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}-${key}-${index}-[]`;
+            const rKey = uuidv4();
 
             return (
               <Radio
+                key={rKey}
                 name={nameKey}
                 value={answer}
                 padding="0.375rem"
@@ -72,8 +75,10 @@ export const OpenTdbMultipleChoiceItem = (item) => {
         <CheckboxGroup>
           {answers.map((answer, index) => {
             const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}-${key}-${index}`;
-
+            const cKey = uuidv4();
+  
             return <Checkbox
+              key={cKey}
               type="checkbox"
               name={nameKey}
               value={answer}
