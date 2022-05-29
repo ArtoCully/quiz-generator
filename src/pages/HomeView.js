@@ -31,7 +31,7 @@ function Home() {
               border="2px"
               borderColor="pink.500"
             >
-              Specify Quiz
+              Generate Custom Quiz
           </Button>
         </Link>
       </GridItem>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Grid, GridItem, Spinner } from "@chakra-ui/react"
+import { Grid, GridItem, Spinner, Box, Text, Heading } from "@chakra-ui/react"
 import { fetchQuizes } from '../services/opentdb';
 import OpenTdbQuiz from '../components/quiz/OpenTdbQuiz';
 import BottomNav from '../components/bottomNav/BottomNav';
@@ -46,11 +46,21 @@ function QuizView() {
                   />
                 })
               }
-              return null;
+              return (
+                <Box as="article">
+                  <Heading as="h2" size="2xl">
+                    No quiz results
+                  </Heading>
+                  <Text size="2xl">
+                    Please try another search
+                  </Text>
+                </Box>
+              );
             })()}
           </GridItem>
       </Grid>
       <BottomNav
+        quizList={quizList}
         setQuizList={setQuizList}
         setLoading={setLoading}
         isLoading={isLoading}
