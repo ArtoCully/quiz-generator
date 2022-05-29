@@ -91,15 +91,12 @@ function QuizSpecifyView() {
           to={`/quiz?${formState}`}
         >
           <Button
-            variant="outline"
-            color="pink"
+            colorScheme="pink"
             size="md"
             height="48px"
             width="200px"
-            border="2px"
-            borderColor="pink.500"
           >
-            Generate Quiz
+            Generate Custom Quiz
           </Button>
         </Link>
       </FormControl>

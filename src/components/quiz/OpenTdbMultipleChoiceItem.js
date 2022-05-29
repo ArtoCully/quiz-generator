@@ -45,7 +45,7 @@ const OpenTdbMultipleChoiceItem = (item) => {
                 value={answer}
                 padding="0.375rem"
               >
-                <Text size="s" dangerouslySetInnerHTML={{ __html: answer }} />
+                <Text textAlign="left" size="sm" dangerouslySetInnerHTML={{ __html: answer }} />
               </Checkbox>
             )
           })}

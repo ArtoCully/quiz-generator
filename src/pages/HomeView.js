@@ -8,13 +8,10 @@ function Home() {
       <GridItem>
         <Link to="/quiz?amount=15">
           <Button
-              variant="outline"
-              color="pink"
+              colorScheme="pink"
               size="md"
-              height="48px"
+              height="120px"
               width="200px"
-              border="2px"
-              borderColor="pink.500"
             >
               Generate Random Quiz
           </Button>
@@ -23,13 +20,10 @@ function Home() {
       <GridItem>
         <Link to="/form/quiz">
           <Button
-              variant="outline"
-              color="pink"
+              colorScheme="pink"
               size="md"
-              height="48px"
+              height="120px"
               width="200px"
-              border="2px"
-              borderColor="pink.500"
             >
               Generate Custom Quiz
           </Button>

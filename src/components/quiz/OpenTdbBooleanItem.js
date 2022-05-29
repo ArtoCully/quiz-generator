@@ -43,7 +43,7 @@ const OpenTdbBooleanItem = (item) => {
                 value={answer}
                 padding="0.375rem" // NOTE: create a spacing tokens list
               >
-                <Text fontSize="s" dangerouslySetInnerHTML={{ __html: answer }} />
+                <Text textAlign="left" fontSize="sm" dangerouslySetInnerHTML={{ __html: answer }} />
               </Radio>
             );
           })}

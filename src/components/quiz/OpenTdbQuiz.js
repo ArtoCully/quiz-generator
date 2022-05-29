@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Box,
   Button,
+  useToast,
 } from "@chakra-ui/react"
 import OpenTdbBooleanItem from './OpenTdbBooleanItem';
 import OpenTdbMultipleChoiceItem from './OpenTdbMultipleChoiceItem';
@@ -26,35 +27,34 @@ const QuizTypeMemo = {
 const OpenTdbQuiz = (quiz) => {
   const { type } = quiz;
   const OpenDbItem = QuizTypeMemo[type];
-  const [showAnswer, setShowAnswer] = React.useState(false);
-
-  const handleOnClickToggleAnswer = (event) => {
-    const nextSibling = event.target.nextSibling;
-    if (showAnswer) {
-      setShowAnswer(false);
-      nextSibling.setAttribute('hidden', true);
-    } else {
-      nextSibling.removeAttribute('hidden');
-      setShowAnswer(true);
-    }
-  }
+  const toast = useToast();
 
   return (
-    <Box maxW="80vw" margin="1rem auto 2rem">
+    <Box
+      maxW="80vw"
+      margin="1rem auto 2rem"
+      borderBottom="1px solid #EDF2F7"
+      paddingBottom="2rem"
+    >
       <OpenDbItem {...quiz} />
+
       <Button
-        colorScheme="pink"
+        marginTop="2rem"
         variant="outline"
         size="sm"
-        className="OpenTdbQuiz--reveal-answer"
-        onClick={handleOnClickToggleAnswer}
-        marginTop="1rem"
+        onClick={() =>
+          toast({
+            title: `Answer for question ${quiz.questionNumber}`,
+            position: 'top',
+            description: quiz.correct_answer,
+            status: 'info',
+            duration: 9000,
+            isClosable: true,
+          })
+        }
       >
-        {showAnswer ? 'Hide' : 'Reveal'} Answer
+        Reveal Answer
       </Button>
-      <small className="OpenTdbQuiz--answer" hidden>
-        {quiz.correct_answer}
-      </small>
     </Box>
   )
 }

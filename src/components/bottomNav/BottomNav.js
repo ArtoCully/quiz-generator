@@ -27,13 +27,10 @@ const BottomNav = (props) => {
           ? (
             <Button
               onClick={handleOnClick}
-              variant="outline"
-              color="pink"
+              colorScheme="pink"
               size="md"
               height="48px"
               width="200px"
-              border="2px"
-              borderColor="pink.500"
               isLoading={props.isLoading}
             >
               New Questions
@@ -41,13 +38,10 @@ const BottomNav = (props) => {
           ) : (
             <Link to="/form/quiz">
               <Button
-                variant="outline"
-                color="pink"
+                colorScheme="pink"
                 size="md"
                 height="48px"
                 width="200px"
-                border="2px"
-                borderColor="pink.500"
               >
                 Generate Custom Quiz
               </Button>
