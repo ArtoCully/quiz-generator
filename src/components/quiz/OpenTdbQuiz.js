@@ -9,6 +9,7 @@ import {
   Checkbox,
   CheckboxGroup,
   Heading,
+  Text,
 } from "@chakra-ui/react"
 import './OpenTdbQuiz.css';
 // category: "Entertainment: Video Games"
@@ -33,7 +34,14 @@ export const OpenTdbBooleanItem = (item) => {
         marginBottom="1.1rem"
         lineHeight="1.6"
       >
-        <span dangerouslySetInnerHTML={{ __html: item.question }} />
+        {item.questionNumber &&
+          <Text
+            fontSize="md"
+          >
+            {item.questionNumber}
+          </Text>
+        }
+        <Text dangerouslySetInnerHTML={{ __html: item.question }} />
       </Heading>
       <Flex align="center" justify="center">
         <RadioGroup onChange={setValue} value={value}>
@@ -71,7 +79,14 @@ export const OpenTdbMultipleChoiceItem = (item) => {
         marginBottom="1.1rem"
         lineHeight="1.6"
       >
-        <span dangerouslySetInnerHTML={{ __html: item.question }} />
+        {item.questionNumber &&
+          <Text
+            fontSize="md"
+          >
+            {item.questionNumber}
+          </Text>
+        }
+        <Text dangerouslySetInnerHTML={{ __html: item.question }} />
       </Heading>
       <Flex align="center" justify="center">
         <CheckboxGroup>

@@ -36,10 +36,14 @@ function QuizView() {
                   color="pink"
                   size="xl"/>
               }
-              if (quizList.length) {
+              if (quizList.length > 0) {
                 return quizList.map((quiz, index) => {
                   const key = uuidv4();
-                  return <OpenTdbQuiz key={key} {...quiz} />
+                  return <OpenTdbQuiz
+                    key={key}
+                    questionNumber={index + 1}
+                    {...quiz}
+                  />
                 })
               }
               return null;
