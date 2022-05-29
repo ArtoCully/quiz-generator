@@ -16,7 +16,7 @@ const OpenTdbBooleanItem = (item) => {
   const key = item.question.trim();
 
   return (
-    <Box as="article">
+    <Box as="article" maxWidth="480px" margin="0 auto">
       <Heading
         as="h3"
         size="md"
@@ -24,7 +24,10 @@ const OpenTdbBooleanItem = (item) => {
         lineHeight="1.6"
       >
         {item.questionNumber &&
-          <Text fontSize="sm">
+          <Text
+            color="pink.500"
+            fontSize="sm"
+          >
             Question {item.questionNumber}
           </Text>
         }

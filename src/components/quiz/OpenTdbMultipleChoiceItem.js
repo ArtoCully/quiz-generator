@@ -15,7 +15,7 @@ const OpenTdbMultipleChoiceItem = (item) => {
   const key = item.question.trim();
 
   return (
-    <Box as="article">
+    <Box as="article" maxWidth="480px" margin="0 auto">
       <Heading
         as="h3"
         size="md"
@@ -24,6 +24,7 @@ const OpenTdbMultipleChoiceItem = (item) => {
       >
         {item.questionNumber &&
           <Text
+            color="pink.500"
             fontSize="sm"
           >
             Question {item.questionNumber}

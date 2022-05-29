@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Box, Flex } from '@chakra-ui/react';
+import { Button, Box, Flex, Stack } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 import { fetchQuizes } from '../../services/opentdb';
 import './BottomNav.css';
@@ -20,21 +20,37 @@ const BottomNav = (props) => {
       });
   }
 
+  const handleSubmitAnswers = () => {
+    console.log('handle submit answers');
+  }
+
   return (
     <Box className="Bottom-nav">
       <Flex>
         {props.quizList.length > 0
           ? (
-            <Button
-              onClick={handleOnClick}
-              colorScheme="pink"
-              size="md"
-              height="48px"
-              width="200px"
-              isLoading={props.isLoading}
-            >
-              New Questions
-            </Button>
+            <Stack direction='row' spacing={4} align='center'>
+              <Button
+                onClick={handleOnClick}
+                variant="outline"
+                colorScheme="pink"
+                size="md"
+                height="48px"
+                width="200px"
+                isLoading={props.isLoading}
+              >
+                New Questions
+              </Button>
+              <Button
+                onClick={handleSubmitAnswers}
+                colorScheme="pink"
+                size="md"
+                height="48px"
+                width="200px"
+              >
+                Submit Answers
+              </Button>
+            </Stack>
           ) : (
             <Link to="/form/quiz">
               <Button

@@ -4,7 +4,15 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={15} padding="2rem" paddingBottom="10rem">
+    <Grid
+      templateColumns="repeat(2, 1fr)"
+      gap={15}
+      padding="2rem"
+      paddingBottom="10rem"
+      height="100vh"
+      justifyContent="center"
+      alignItems="center"
+    >
       <GridItem>
         <Link to="/quiz?amount=15">
           <Button
