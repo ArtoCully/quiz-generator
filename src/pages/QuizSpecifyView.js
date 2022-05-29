@@ -12,15 +12,24 @@ import {
 const searchParams = new URLSearchParams();
 
 function QuizSpecifyView() {
-  const [formState, setFormState] = React.useState('amount=10');
+  const defaultFormState = 'amount=10';
+  const [formState, setFormState] = React.useState(defaultFormState);
+
   const handleOnFormChange = (e) => {
     const key = e.target.name.split('_')[1];
     const value = e.target.value;
+
     if (searchParams.has(key)) {
       searchParams.set(key, value);
     } else {
       searchParams.append(key, value);
     }
+
+    // Ensure amount is still there as default
+    if (!searchParams.has('amount')) {
+      searchParams.set('amount', '10');
+    }
+
     setFormState(searchParams.toString());
   };
 
