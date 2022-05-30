@@ -24,8 +24,8 @@ const QuizTypeMemo = {
   'multiple': OpenTdbMultipleChoiceItem,
 };
 
-const OpenTdbQuiz = (quiz) => {
-  const { type } = quiz;
+const OpenTdbQuiz = (props) => {
+  const { type } = props;
   const OpenDbItem = QuizTypeMemo[type];
   const toast = useToast();
 
@@ -36,7 +36,7 @@ const OpenTdbQuiz = (quiz) => {
       borderBottom="1px solid #EDF2F7"
       paddingBottom="2rem"
     >
-      <OpenDbItem {...quiz} />
+      <OpenDbItem {...props} />
 
       <Button
         marginTop="2rem"
@@ -44,9 +44,9 @@ const OpenTdbQuiz = (quiz) => {
         size="sm"
         onClick={() =>
           toast({
-            title: `Answer for question ${quiz.questionNumber}`,
+            title: `Answer for question ${props.questionNumber}`,
             position: 'top',
-            description: quiz.correct_answer,
+            description: props.correct_answer,
             status: 'info',
             duration: 9000,
             isClosable: true,

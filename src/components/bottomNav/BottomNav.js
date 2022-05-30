@@ -2,8 +2,11 @@ import * as React from 'react';
 import { Button, Box, Flex, Stack } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 import { fetchQuizes } from '../../services/opentdb';
+import transformQuizResults from '../../utils/transformQuizResults';
+// NOTE: Future task remove .css files
 import './BottomNav.css';
 
+// NOTE: Convert component to render prop
 const BottomNav = (props) => {
   const handleOnClick = () => {
     props.setLoading(true);
@@ -12,7 +15,7 @@ const BottomNav = (props) => {
       .then((response) => {
         if (response.status === 200 && response.data.results) {
           props.setLoading(false);
-          props.setQuizList(response.data.results);
+          props.setQuizList(transformQuizResults(response.data.results));
         }
       })
       .finally(() => {
@@ -21,7 +24,7 @@ const BottomNav = (props) => {
   }
 
   const handleSubmitAnswers = () => {
-    console.log('handle submit answers');
+    props.submitAnswers();
   }
 
   return (
@@ -62,7 +65,6 @@ const BottomNav = (props) => {
                 Generate Custom Quiz
               </Button>
             </Link>
-
           )
         }
       </Flex>

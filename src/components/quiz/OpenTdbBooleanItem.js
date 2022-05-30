@@ -9,11 +9,19 @@ import {
   Text,
 } from "@chakra-ui/react"
 
-const OpenTdbBooleanItem = (item) => {
-  const answers = [...item.incorrect_answers, item.correct_answer];
-  const noSpaceCategory = item.category.replace(/\s/g, '');
+const OpenTdbBooleanItem = (props) => {
+  const answers = [...props.incorrect_answers, props.correct_answer];
+  const noSpaceCategory = props.category.replace(/\s/g, '');
   const [value, setValue] = React.useState('');
-  const key = item.question.trim();
+
+  const handleOnChange = (value) => {
+    props.handleOnChange({
+      question: props.question,
+      userAnswer: value,
+      correctAnswer: props.correct_answer,
+    })();
+    setValue(value);
+  }
 
   return (
     <Box as="article" maxWidth="480px" margin="0 auto">
@@ -23,20 +31,23 @@ const OpenTdbBooleanItem = (item) => {
         marginBottom="1.1rem"
         lineHeight="1.6"
       >
-        {item.questionNumber &&
+        {props.questionNumber &&
           <Text
             color="pink.500"
             fontSize="sm"
           >
-            Question {item.questionNumber}
+            Question {props.questionNumber}
           </Text>
         }
-        <Text dangerouslySetInnerHTML={{ __html: item.question }} />
+        <Text dangerouslySetInnerHTML={{ __html: props.question }} />
       </Heading>
       <Flex align="center" justify="center">
-        <RadioGroup onChange={setValue} value={value}>
+        <RadioGroup
+          onChange={handleOnChange}
+          value={value}
+        >
           {answers.map((answer, index) => {
-            const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}-${key}-${index}-[]`;
+            const nameKey = `${noSpaceCategory}-${props.difficulty}-${props.correct_answer}-${props.id}-${index}-[]`;
             const rKey = uuidv4();
 
             return (

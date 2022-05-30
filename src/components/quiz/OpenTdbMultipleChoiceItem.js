@@ -9,10 +9,9 @@ import {
   Text,
 } from "@chakra-ui/react"
 
-const OpenTdbMultipleChoiceItem = (item) => {
-  const answers = [...item.incorrect_answers, item.correct_answer];
-  const noSpaceCategory = item.category.replace(/\s/g, '');
-  const key = item.question.trim();
+const OpenTdbMultipleChoiceItem = (props) => {
+  const answers = [...props.incorrect_answers, props.correct_answer];
+  const noSpaceCategory = props.category.replace(/\s/g, '');
 
   return (
     <Box as="article" maxWidth="480px" margin="0 auto">
@@ -22,20 +21,25 @@ const OpenTdbMultipleChoiceItem = (item) => {
         marginBottom="1.1rem"
         lineHeight="1.6"
       >
-        {item.questionNumber &&
+        {props.questionNumber &&
           <Text
             color="pink.500"
             fontSize="sm"
           >
-            Question {item.questionNumber}
+            Question {props.questionNumber}
           </Text>
         }
-        <Text dangerouslySetInnerHTML={{ __html: item.question }} />
+        <Text dangerouslySetInnerHTML={{ __html: props.question }} />
       </Heading>
       <Flex align="center" justify="center">
-        <CheckboxGroup>
+        <CheckboxGroup
+          onChange={props.handleOnChange({
+            question: props.question,
+            correctAnswer: props.correct_answer,
+          })}
+        >
           {answers.map((answer, index) => {
-            const nameKey = `${noSpaceCategory}-${item.difficulty}-${item.correct_answer}-${key}-${index}`;
+            const nameKey = `${noSpaceCategory}-${props.difficulty}-${props.correct_answer}-${props.id}`;
             const cKey = uuidv4();
   
             return (
@@ -57,3 +61,4 @@ const OpenTdbMultipleChoiceItem = (item) => {
 };
 
 export default OpenTdbMultipleChoiceItem;
+
